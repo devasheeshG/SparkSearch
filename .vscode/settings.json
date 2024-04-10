@@ -1,0 +1,10 @@
+{
+    "files.exclude": {
+        "**/.venv": true,
+        "**/__pycache__": true,
+        "**/.gitkeep": true,
+    },
+    "files.associations": {
+        "**/.env.template": "envFile",
+    }
+}
