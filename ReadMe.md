@@ -1,49 +1,35 @@
-
-## SQL (PostgreSQL)
+## PostgreSQL Database Structure
 
 ### Table: `users`
-
-- `id` (SERIAL PRIMARY KEY)
-- `username` (VARCHAR(50) UNIQUE NOT NULL)
-- `password_hash` (VARCHAR(255) NOT NULL)
-- `created_at` (TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)
-- `updated_at` (TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)
+- **Columns**:
+  - `id` (UUID): Unique identifier for the user.
+  - `username` (String): Username chosen by the user.
+  - `password_hash` (String): Hashed password of the user.
+  - `salt` (String): Salt used to hash the password.
 
 ### Table: `files`
+- **Columns**:
+  - `id` (UUID): Unique identifier for the file.
+  - `user_id` (UUID): Foreign key referencing the `id` column in the `users` table, representing the user who uploaded the file.
+  - `file_path` (String): Path to the uploaded file.
+  - `file_name` (String): Name of the uploaded file.
+  - `file_type` (String): Type of the file (e.g., PDF, TXT).
+  - `page_count` (Integer): Number of pages in the file.
 
-- `id` (SERIAL PRIMARY KEY)
-- `user_id` (INT NOT NULL, FOREIGN KEY REFERENCES `users`(`id`))
-- `file_path` (VARCHAR(255) NOT NULL)
-- `file_name` (VARCHAR(255) NOT NULL)
-- `file_type` (VARCHAR(50) NOT NULL)
-- `page_count` (INT NOT NULL)
-- `created_at` (TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)
-- `updated_at` (TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)
-
-### Table: `chunks`
-
-- `id` (SERIAL PRIMARY KEY)
-- `file_id` (INT NOT NULL, FOREIGN KEY REFERENCES `files`(`id`))
-- `page_num` (INT NOT NULL)
-- `text` (TEXT NOT NULL)
-- `created_at` (TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)
-- `updated_at` (TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)
-
-## NoSQL (MongoDB)
+## MongoDB Database Structure
 
 ### Collection: `chunk_data`
+- **Fields**:
+  - `_id` (UUID): Unique identifier for the chunk.
+  - `file_id` (UUID): Foreign key referencing the `id` column in the PostgreSQL `files` table, representing the file to which the chunk belongs.
+  - `page_num` (Integer): Page number of the chunk within the file.
+  - `title` (String): Title of the chunk (if any).
+  - `text` (String): Text content of the chunk.
 
-- `_id` (ObjectId)
-- `chunk_id` (Int, FOREIGN KEY REFERENCES `chunks`(`id`))
-- `title` (String)
-- `text` (String)
-- `created_at` (Date)
-- `updated_at` (Date)
-
-## Vector Database (Milvus)
+## Milvus Database Structure
 
 ### Collection: `embeddings`
-
-- `id` (String, FOREIGN KEY REFERENCES `chunks`(`id`))
-- `username` (String, FOREIGN KEY REFERENCES `users`(`username`))
-- `embeddings` (Float[])
+- **Fields**:
+  - `chunk_id` (UUID): Unique identifier for the embedding.
+  - `file_id` (UUID): Foreign key referencing the `id` column in the PostgreSQL `files` table, representing the file to which the embedding belongs.
+  - `embeddings` (List of Floats): List of floating-point values representing the embedding vector.

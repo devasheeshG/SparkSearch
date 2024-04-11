@@ -3,43 +3,33 @@
 
 from pydantic import BaseModel
 from datetime import datetime
-from uuid import UUID, uuid4
+from uuid import UUID
 from typing import List
 
+# Postgres models
 class User(BaseModel):
-    id: UUID = uuid4()
+    id: UUID    # Automatically generated UUID by Postgres
     username: str
     password_hash: str
-    created_at: datetime
-    updated_at: datetime
+    salt: str
 
-class File(BaseModel):
-    id: UUID = uuid4()
+class UploadedFile(BaseModel):
+    id: UUID    # Automatically generated UUID by Postgres
     user_id: UUID
     file_path: str
     file_name: str
     file_type: str
     page_count: int
-    created_at: datetime
-    updated_at: datetime
 
+# MongoDB models
 class Chunk(BaseModel):
-    id: UUID = uuid4()
+    _id: UUID   # Automatically generated UUID by MongoDB
     file_id: UUID
     page_num: int
-    text: str
-    created_at: datetime
-    updated_at: datetime
-
-class ChunkData(BaseModel):
-    _id: UUID = uuid4()
-    chunk_id: UUID
     title: str
     text: str
-    created_at: datetime
-    updated_at: datetime
 
+# Milvus models
 class Embedding(BaseModel):
-    id: UUID = uuid4()
-    username: str
+    chunk: Chunk
     embeddings: List[float]
