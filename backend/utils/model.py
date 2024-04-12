@@ -14,17 +14,17 @@ from typing import List
 #     salt: str
 
 class UploadedFile(BaseModel):
-    id: UUID = uuid4()   # Automatically generated UUID by Postgres
+    id: UUID | None  # Automatically generated UUID by Postgres
     user_id: UUID
     file_path: str
     file_name: str
     file_type: str
-    page_count: int
+    # page_count: int
 
 # MongoDB models
 class Chunk(BaseModel):
-    _id: UUID = uuid4()  # Automatically generated UUID by MongoDB
-    file_id: UUID
+    _id: UUID | None  # Automatically generated UUID by MongoDB
+    file_id: str
     page_num: int
     title: str
     text: str

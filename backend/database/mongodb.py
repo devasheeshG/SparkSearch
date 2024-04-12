@@ -15,6 +15,7 @@ class MongoDB:
         self.database = database
         self.client = None
         self.db = None
+        self.collection = None
         
     def connect(self):
         """Connect to the MongoDB database."""
@@ -23,6 +24,7 @@ class MongoDB:
             self.db = self.client[self.database]
             if "chunk_data" not in self.db.list_collection_names():
                 self.db.create_collection("chunk_data")
+            self.collection = self.db["chunk_data"]
         except Exception as e:
             print(f"Error connecting to MongoDB: {e}")
             raise

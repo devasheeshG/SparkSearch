@@ -66,12 +66,12 @@ class Postgres:
         self.cursor.execute(
             """
             CREATE TABLE IF NOT EXISTS files (
-                id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+                id UUID DEFAULT uuid_generate_v4(),
                 user_id UUID NOT NULL REFERENCES users(id),
                 file_path VARCHAR(255) NOT NULL,
                 file_name VARCHAR(255) NOT NULL,
                 file_type VARCHAR(50) NOT NULL,
-                page_count INT NOT NULL
+                PRIMARY KEY (user_id, file_path)
             )
             """
         )
