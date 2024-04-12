@@ -13,7 +13,7 @@ const Navbar = () => {
         <a href="/features">Features</a>
       </li>
       <li className='hover:opacity-50'>
-        <a href="/docs">Docs</a>
+        <a href="https://github.com/devasheeshG/SparkSearch">Docs</a>
       </li>
       <li className='hover:opacity-50'>
         <a href="/youtube">Youtube</a>
