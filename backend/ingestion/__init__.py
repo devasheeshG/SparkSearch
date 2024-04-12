@@ -13,10 +13,7 @@ async def extract_chunks_from_document(file: File, file_data: UploadedFile) -> L
         from llama_index.readers.file import PDFReader
         reader = PDFReader(return_full_document=True)
         with NamedTemporaryFile(delete=True, suffix='.pdf') as temp_file:
-            temp_file.write(file.file)
-            
-            import os
-            print('File Size: ', os.path.getsize(temp_file.name))
+            temp_file.write(await file.read())
             document = reader.load_data(temp_file.name)
             
             if len(document) == 0:
@@ -29,14 +26,20 @@ async def extract_chunks_from_document(file: File, file_data: UploadedFile) -> L
     ## RTF
     elif file_data.file_type == "rtf":
         from striprtf.striprtf import rtf_to_text
-        with NamedTemporaryFile(delete=True, suffix='.pdf') as temp_file:
+        with NamedTemporaryFile(delete=True, suffix='.rtf') as temp_file:
             temp_file.write(await file.read())
-            import os
-            print('File Size: ', os.path.getsize(temp_file.name))
+            
             with open(temp_file.name, 'r') as f:
                 file_content = f.read()
         
-        return [Chunk(file_id=file_data.id, page_num=0, title=file_data.file_name, text=rtf_to_text(file_content))]
+            return [Chunk(file_id=file_data.id, page_num=0, title=file_data.file_name, text=rtf_to_text(file_content))]
 
 async def embed_chunks(chunks: List[Chunk]) -> List[Embedding]:
-    raise NotImplementedError("`embed_chunks` function is not implemented.")
+    from openai import OpenAI
+    import os
+    client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+    embeddings = []
+    for chunk in chunks:
+        embedding = client.embeddings.create(input = [chunk.text], model='text-embedding-3-large').data[0].embedding
+        embeddings.append(Embedding(chunk=chunk, embeddings=embedding))
+    return embeddings

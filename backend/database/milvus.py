@@ -40,8 +40,9 @@ class VectorDB:
                     auto_id=False,
                     enable_dynamic_field=True,
                 )
-                schema.add_field(field_name="id", datatype=DataType.VARCHAR, is_primary=True, auto_id=False, max_length=36)
-                schema.add_field(field_name="embeddings", datatype=DataType.FLOAT_VECTOR, dim=128)
+                schema.add_field(field_name="chunk_id", datatype=DataType.VARCHAR, is_primary=True, auto_id=False, max_length=36)
+                schema.add_field(field_name="file_id", datatype=DataType.VARCHAR, max_length=36)
+                schema.add_field(field_name="embeddings", datatype=DataType.FLOAT_VECTOR, dim=3072)
                 
                 # Define index parms
                 index_parms = self.client.prepare_index_params()
@@ -58,7 +59,7 @@ class VectorDB:
                 # Load collection
                 while not self.client.get_load_state(self.collection_name)["state"] == "<LoadState: Loaded>":
                     self.client.load_collection(self.collection_name)
-
+                
         except Exception as e:
             print(f"Error connecting to Milvus: {e}")
             raise
@@ -89,4 +90,3 @@ if __name__ == '__main__':
     finally:
         if vectordb:
             vectordb.close()
-    
