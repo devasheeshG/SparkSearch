@@ -9,7 +9,7 @@ export default function Content() {
   React.useEffect(() => {
     const typed = new Typed(el.current, {
       strings: [`Revolutionize archaic lexicon substitution with contextual exploration for personalized data curation`],
-      typeSpeed: 10,
+      typeSpeed: 30,
       loop:true,
     });
 

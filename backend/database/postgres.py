@@ -27,11 +27,12 @@ class Postgres:
             self.cursor.execute(f"SELECT 1 FROM pg_database WHERE datname='{self.database}'")
             if not self.cursor.fetchone():
                 self.cursor.execute(f"CREATE DATABASE {self.database}")
-                self.conn.commit()
+                # self.conn.commit()
                 
             # Reconnect to the new database
             self.conn.close()
             self.conn = psycopg2.connect(f"{self.uri}/{self.database}")
+            self.conn.autocommit = True
             self.cursor = self.conn.cursor()
             
             # Enable the uuid-ossp extension
@@ -57,7 +58,8 @@ class Postgres:
             """CREATE TABLE IF NOT EXISTS users (
                 id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
                 username VARCHAR(50) UNIQUE NOT NULL,
-                password_hash VARCHAR(255) NOT NULL
+                password_hash VARCHAR(255) NOT NULL,
+                salt VARCHAR(255) NOT NULL
             )"""
         )
 

@@ -3,18 +3,18 @@
 
 from pydantic import BaseModel
 from datetime import datetime
-from uuid import UUID
+from uuid import UUID, uuid4
 from typing import List
 
 # Postgres models
-class User(BaseModel):
-    id: UUID    # Automatically generated UUID by Postgres
-    username: str
-    password_hash: str
-    salt: str
+# class User(BaseModel):
+#     id: UUID    # Automatically generated UUID by Postgres
+#     username: str
+#     password_hash: str
+#     salt: str
 
 class UploadedFile(BaseModel):
-    id: UUID    # Automatically generated UUID by Postgres
+    id: UUID = uuid4()   # Automatically generated UUID by Postgres
     user_id: UUID
     file_path: str
     file_name: str
@@ -23,7 +23,7 @@ class UploadedFile(BaseModel):
 
 # MongoDB models
 class Chunk(BaseModel):
-    _id: UUID   # Automatically generated UUID by MongoDB
+    _id: UUID = uuid4()  # Automatically generated UUID by MongoDB
     file_id: UUID
     page_num: int
     title: str

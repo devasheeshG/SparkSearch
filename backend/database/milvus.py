@@ -27,7 +27,7 @@ class VectorDB:
         try:
             # Establish connection to Milvus server
             self.client = MilvusClient(uri=self.uri, timeout=10)
-            connections.connect(client=self.client)
+            connections.connect(host=self.uri.split("://")[1].split(':')[0], port=self.uri.split(":")[2].split("/")[0])
             # Check if the specified database exists, if not create it
             if self.database_name not in db.list_database():
                 db.create_database(self.database_name)
