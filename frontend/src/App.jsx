@@ -14,6 +14,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Content />} />
+
           <Route path="/youtube" element={<Youtube />} />
           <Route path="/features" element={<Features />} />
           <Route path="/contact" element={<Contact />} />

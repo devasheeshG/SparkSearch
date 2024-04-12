@@ -24,7 +24,7 @@ export default function Content() {
         <div className="text-5xl font-bold text-gray-700 flex justify-center items-center ">Developers, say hello to...</div>
         <div className="text-2xl py-6 px-2 font-bold text-purple-700 flex justify-center items-center "><span ref={el} /></div>
         <div className="text-xl py-4 font-semibold text-brown-400 flex justify-center items-center px-10">
-        In today's fast-paced world, the need for efficient and effective data search has become crucial. Introducing SparkSearch, an innovative application that empowers users to move beyond the limitations of conventional search and embrace the power of contextual searching for their own data.</div>
+        In today's fast-paced world, the need for efficient and effective data search has become crucial. Introducing SparkSearch, an innovative application that empowers users to move beyond the limitations of conventional search and embrace the power of contextual searching for their own data.</div>
       </div>
       <div className="py-8 px-4 border border-black rounded-[20px] w-[fit-content] mx-auto flex space-x-1 h-[90vh]">
       <video autoPlay={true} loop controls={false} muted controlsList="nodownload noremoteplayback" className='border rounded-[20px] h-[80vh] mx-auto'>
@@ -38,7 +38,7 @@ export default function Content() {
           <div className="lowersection-left-second font-bold text-black text-4xl">Get More Done with Spark Search</div>
           <div className="lowersection-left-third font-semibold text-lg text-grey-100 ">Your development journey just became more intuitive and efficient. Less context switching, more seamless integration. With Pieces, the little things are proactively managed. Let's revolutionize your workflow together.</div>
          </div>
-         <div className="lowersection-right"><img src="/public/robo.png" alt="" className='rounded-[20px]'/></div>
+         <div className="lowersection-right"><img src="./robo.png" alt="" className='rounded-[20px]'/></div>
       </div>
       <Footer/>
     </div>
