@@ -26,7 +26,7 @@ React.useEffect(() => {
     <div>
       <div className="py-16 px-4 bg-gray-100">
         <div className="text-6xl font-bold text-gray-700 flex justify-center items-center">
-          Developers, say hello to...
+          Say hello to SparkSearch
         </div>
         <div className="text-4xl py-6 px-2 font-bold text-purple-600 flex justify-center items-center">
   <div className="text-center">
@@ -60,16 +60,13 @@ React.useEffect(() => {
       <div className="my-10 py-8 px-16 flex justify-around items-center bg-gray-800 text-white">
         <div className="flex-1 mr-8">
           <div className="font-semibold text-gray-400 text-2xl mt-4">
-            Intelligent Workflows, Simplified.
+          Personalized. Contextual. Seamless.
           </div>
           <div className="font-bold text-white text-5xl mt-4">
-            Get More Done with Spark Search
+            Get Work Done with SparkSearch
           </div>
           <div className="font-semibold text-2xl text-gray-300 mt-4">
-            Your development journey just became more intuitive and efficient.
-            Less context switching, more seamless integration. With Pieces, the
-            little things are proactively managed. Let's revolutionize your
-            workflow together.
+          SparkSearch revolutionizes data search by leveraging contextual exploration, enabling users to efficiently navigate and curate their personal data with unprecedented precision and ease.
           </div>
         </div>
         <div className="flex-1">

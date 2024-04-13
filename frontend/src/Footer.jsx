@@ -8,8 +8,8 @@ function Footer() {
         <div className="mb-6 md:mb-0">
           <h3 className="text-2xl font-bold mb-2">Contact Details</h3>
           <ul>
-            <li>sharmavs9205@gmail.com</li>
-            <li>+91 7303876390</li>
+            <li>xxx@gmail.com</li>
+            <li>+91 XXXXXXXXXX</li>
           </ul>
         </div>
         <div>

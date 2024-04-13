@@ -47,16 +47,14 @@ const InstallButton = () => {
 
 const Navbar = () => {
   return (
-    <nav className="bg-purple-900 bg-opacity-80 h-[fit-content] w-full flex justify-between px-10 py-2 sticky top-0">
+    <nav className="bg-purple-900 bg-opacity-45 h-[fit-content] w-full flex justify-between px-10 py-2 sticky top-0">
       <div className="flex items-center">
-        <a href="/" className="text-white hover:opacity-50 mr-4 font-bold text-lg">
-          Home
-        </a>
+
         <div className="logo h-auto w-16">
           <a href="/">
             <img
               className="h-auto w-16"
-              src="/Untitled_design__2_-removebg-preview.png"
+              src="/public/icon.png"
               alt=""
             />
           </a>
