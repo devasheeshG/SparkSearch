@@ -17,7 +17,7 @@ export default function Youtube() {
             className="absolute top-0 left-0 w-full h-full object-cover"
           >
             <source
-              src="https://file-examples.com/storage/feed2327706616bd9a07caa/2017/04/file_example_MP4_480_1_5MG.mp4"
+              src="/preview.mp4"
               type="video/mp4"
             />
             Your browser does not support the video tag.
